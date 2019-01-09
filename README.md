@@ -4,6 +4,73 @@ I will be extending this document with some findings that took my attention.
 Some of them are pretty trivial, it's expected. Feel free to use these notes for
 your study.
 
+#### Manipulating pointers. Reversing a linked list.
+
+In this example I turn a list of integers into a chain of linked nodes and reverse it using 1 temporary pointer.
+
+```go
+package main
+
+import (
+	"fmt"
+	"strings"
+	"strconv"
+)
+
+type Node struct {
+	value int
+	next *Node
+}
+
+func nodeChain(vals []int) *Node {
+	var root, prev, next *Node
+	for _, v := range vals {
+		next = &Node{v, nil}
+		if prev != nil {
+			prev.next = next
+		}
+		prev = next
+		if root == nil {
+			root = next
+		}
+	}
+	return root
+}
+
+func (node *Node) String() string {
+	bld := strings.Builder{}
+	ptr := node
+	for ptr != nil {
+		if bld.Len() != 0 {
+			bld.WriteString(", ")
+		}
+		bld.WriteString(strconv.Itoa(ptr.value))
+		ptr = ptr.next
+	}
+	return bld.String()
+}
+
+func reverse(node *Node) *Node {
+	var head, tail, tmp *Node
+	head = node
+	for head.next != nil {
+		tmp = head.next
+		head.next = tail
+		tail = head
+		head = tmp
+	}
+	head.next = tail
+	return head
+}
+
+func main() {
+	ch := nodeChain([]int{1, 2, 3, 4, 5, 6, 7})
+	fmt.Println(ch)
+	rch := reverse(ch)
+	fmt.Println(rch)
+}
+```
+
 #### Extending primitives. A stack example.
 
 In this example I'm extending the basic []int type by adding stack methods to
