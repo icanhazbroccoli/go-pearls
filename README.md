@@ -48,7 +48,7 @@ func main() {
 ```
 
 Note the pointer dereferencing happening all around: it
-introduces some vsual noise. We might have defined same methods for plain stack
+introduces some vsual noise. We might have defined the same methods for plain stack
 type receiver instead of a pointer type, but in this case any modifications to
 a stack instance would have to be passed back from the methods explicitly. E.g.
 
@@ -57,6 +57,7 @@ stack = stack.Push(1)
 stack, val := stack.Pop()
 if stack.IsEmpty() { ... }
 ```
+It's a matter of taste, I assume. The variant above looks a bit cleaner to me.
 
 ## Copyrights
 
