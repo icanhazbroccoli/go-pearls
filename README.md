@@ -19,17 +19,25 @@ import (
 type stack []int
 
 func (s *stack) Push(v int) {
-	*s = append(*s, v)
+    *s = append(*s, v)
+}
+
+func (s *stack) Peek() int {
+    return (*s)[len(*s)-1]
 }
 
 func (s *stack) Pop() int {
-	v := (*s)[len(*s)-1]
-	*s = (*s)[:len(*s)-1]
-	return v
+    v := (*s)[len(*s)-1]
+    *s = (*s)[:len(*s)-1]
+    return v
 }
 
 func (s *stack) IsEmpty() bool {
-	return len(*s) == 0
+    return len(*s) == 0
+}
+
+func (s *stack) Size() int {
+    return len(*s)
 }
 
 func main() {
