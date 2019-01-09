@@ -4,7 +4,7 @@ I will be extending this document with some findings that took my attention.
 Some of them are pretty trivial, it's expected. Feel free to use these notes for
 your study.
 
-#### Extending primitives. A stack example
+#### Extending primitives. A stack example.
 
 In this example I'm extending the basic []int type by adding stack methods to
 *stack receiver. 
